@@ -32,7 +32,7 @@ express()
 
     .get('/mongodb', function (request, response) {
 
-    mongodb.connect(process.env.MONGODB_URI, function(err, db) {
+    mongodb.connect(process.env.MONGODB_URI, function(err, client) {
         if(err) throw err;
         //get collection of routes
         var db = client.db("heroku_g9c8gpqf");
