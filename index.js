@@ -29,7 +29,7 @@ express()
             res.send("Error " + err);
         }
     })
-    
+
     .get('/mongodb', function (request, response) {
 
     mongodb.connect(process.env.MONGODB_URI, function(err, db) {
@@ -47,8 +47,8 @@ express()
         //close connection when your app is terminating.
         db.close(function (err) {
             if(err) throw err;
-        });
-    });//end of connect
+        })
+    })//end of connect
 })//end app.get
     .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
