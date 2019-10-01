@@ -46,7 +46,7 @@ express()
         });
 
         //close connection when your app is terminating.
-        db.close(function (err) {
+        client.close(function (err) {
             if(err) throw err;
         })
     })//end of connect
