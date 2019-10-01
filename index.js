@@ -27,6 +27,26 @@ express()
             res.send("Error " + err);
         }
     })
+app.get('/mongodb', function (request, response) {
+
+    mongodb.MongoClient.connect(process.env.MONGODB_URI, function(err, db) {
+        if(err) throw err;
+        //get collection of routes
+        var Routes = db.collection('Routes');
+        //get all Routes with frequency >=1
+        Routes.find({ frequency : { $gte: 0 } }).sort({ name: 1 }).toArray(function (err, docs) {
+            if(err) throw err;
+
+            response.render('pages/mongodb', {results: docs});
+
+        });
+
+        //close connection when your app is terminating.
+        db.close(function (err) {
+            if(err) throw err;
+        });
+    });//end of connect
+});//end app.get
     .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 showTimes = () => {
