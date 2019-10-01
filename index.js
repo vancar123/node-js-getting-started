@@ -35,6 +35,7 @@ express()
     mongodb.connect(process.env.MONGODB_URI, function(err, db) {
         if(err) throw err;
         //get collection of routes
+        var db = client.db("heroku_g9c8gpqf");
         var Routes = db.collection('Routes');
         //get all Routes with frequency >=1
         Routes.find({ frequency : { $gte: 0 } }).sort({ name: 1 }).toArray(function (err, docs) {
